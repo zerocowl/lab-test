@@ -1,0 +1,40 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["orderByRelation"]
+}
+
+model Laboratory {
+    id         String   @id @default(cuid())
+    name       String
+    isActive   Boolean  @default(true)
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    street     String
+    number     String
+    city       String
+    state      String
+    cep        String
+    complement String?
+    exams      Exam[]
+}
+
+model Exam {
+    id           String       @id @default(cuid())
+    name         String
+    type         EnumExamType
+    isActive     Boolean      @default(true)
+    laboratories Laboratory[]
+    created_at   DateTime     @default(now())
+    updated_at   DateTime     @updatedAt
+}
+
+enum EnumExamType {
+    ANALISY
+    CLINIC
+    IMAGE
+}
