@@ -16,5 +16,3 @@
 - Nestjs (https://nestjs.com/)
 - Prisma ORM (https://www.prisma.io/)
 
-### Observações
-Sempre que atualizar o schema, execute um: ```npx prisma generate```  
